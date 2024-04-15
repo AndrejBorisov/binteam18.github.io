@@ -22,11 +22,11 @@
   </style>
 </head>
 
-<body bgcolor="white">
+<body bgcolor="#d6d6c2">
   <main>
     <h1 class="title">Binary Converter</h1>
     <div class="description">
-      <p>Enter binary number you wish to convert to decimal. Or decimal number to convert to binary. Only values of 0 and 1 allowed. Max Character lenght 8.</p>
+      <p>Enter binary number you wish to convert to decimal. Or decimal number to convert to binary. Only values of 0 and 1 allowed. Max Character lenght 12.</p>
     </div>
 	<br>
 	<p id="binaryDigits"></p>
@@ -97,14 +97,14 @@
 		}
 		 
 		function maxInput() {
-			if (binary.value.length > 8) {
+			if (binary.value.length > 12) {
 			binary.value = binary.value.slice(0,8); 
 			alert("Max input is exceeded");
 			}
 		} 
 
     function convertBinary() {//binary to decimal value convertersion
-	  let binaries = [0,0,0,0,0,0,0,0]
+	  let binaries = [0,0,0,0,0,0,0,0,0,0,0,0]
 	  var binaryInput = Number(document.getElementById("binary").value);
 	  	 if (binary.value.length == 1)
 		  {
@@ -182,6 +182,73 @@
 		  binaries[6] = Number(document.getElementById("binary").value.charAt(1)) * 64;
 		  binaries[7] = Number(document.getElementById("binary").value.charAt(0)) * 128;
 		  let decimalResult = binaries[7] + binaries[6] + binaries[5] + binaries[4] + binaries[3] + binaries[2] + binaries[1] + binaries[0];
+		  document.getElementById("decimal").value = decimalResult;
+		  }
+		  
+		 if (binary.value.length == 9)
+		  {
+		  binaries[0] = Number(document.getElementById("binary").value.charAt(8)) * 1;
+		  binaries[1] = Number(document.getElementById("binary").value.charAt(7)) * 2;
+		  binaries[2] = Number(document.getElementById("binary").value.charAt(6)) * 4;
+		  binaries[3] = Number(document.getElementById("binary").value.charAt(5)) * 8;
+		  binaries[4] = Number(document.getElementById("binary").value.charAt(4)) * 16;
+		  binaries[5] = Number(document.getElementById("binary").value.charAt(3)) * 32;
+		  binaries[6] = Number(document.getElementById("binary").value.charAt(2)) * 64;
+		  binaries[7] = Number(document.getElementById("binary").value.charAt(1)) * 128;
+		  binaries[8] = Number(document.getElementById("binary").value.charAt(0)) * 256;
+		  let decimalResult = + binaries[8] + binaries[7] + binaries[6] + binaries[5] + binaries[4] + binaries[3] + binaries[2] + binaries[1] + binaries[0];
+		  document.getElementById("decimal").value = decimalResult;
+		  }
+		  
+		 if (binary.value.length == 10)
+		  {
+		  binaries[0] = Number(document.getElementById("binary").value.charAt(9)) * 1;
+		  binaries[1] = Number(document.getElementById("binary").value.charAt(8)) * 2;
+		  binaries[2] = Number(document.getElementById("binary").value.charAt(7)) * 4;
+		  binaries[3] = Number(document.getElementById("binary").value.charAt(6)) * 8;
+		  binaries[4] = Number(document.getElementById("binary").value.charAt(5)) * 16;
+		  binaries[5] = Number(document.getElementById("binary").value.charAt(4)) * 32;
+		  binaries[6] = Number(document.getElementById("binary").value.charAt(3)) * 64;
+		  binaries[7] = Number(document.getElementById("binary").value.charAt(2)) * 128;
+		  binaries[8] = Number(document.getElementById("binary").value.charAt(1)) * 256;
+		  binaries[9] = Number(document.getElementById("binary").value.charAt(0)) * 512;
+		  let decimalResult = binaries[9] + binaries[8] + binaries[7] + binaries[6] + binaries[5] + binaries[4] + binaries[3] + binaries[2] + binaries[1] + binaries[0];
+		  document.getElementById("decimal").value = decimalResult;
+		  }
+		  
+		 if (binary.value.length == 11)
+		  {
+		  binaries[0] = Number(document.getElementById("binary").value.charAt(10)) * 1;
+		  binaries[1] = Number(document.getElementById("binary").value.charAt(9)) * 2;
+		  binaries[2] = Number(document.getElementById("binary").value.charAt(8)) * 4;
+		  binaries[3] = Number(document.getElementById("binary").value.charAt(7)) * 8;
+		  binaries[4] = Number(document.getElementById("binary").value.charAt(6)) * 16;
+		  binaries[5] = Number(document.getElementById("binary").value.charAt(5)) * 32;
+		  binaries[6] = Number(document.getElementById("binary").value.charAt(4)) * 64;
+		  binaries[7] = Number(document.getElementById("binary").value.charAt(3)) * 128;
+		  binaries[8] = Number(document.getElementById("binary").value.charAt(2)) * 256;
+		  binaries[9] = Number(document.getElementById("binary").value.charAt(1)) * 512;
+		  binaries[10] = Number(document.getElementById("binary").value.charAt(0)) * 1024;
+		  let decimalResult = binaries[10] + binaries[9] + binaries[8] + binaries[7] + binaries[6] + binaries[5] + binaries[4] + binaries[3] + binaries[2] + binaries[1] + binaries[0];
+		  document.getElementById("decimal").value = decimalResult;
+		  }
+		  
+		 if (binary.value.length == 12)
+		  {
+		  binaries[0] = Number(document.getElementById("binary").value.charAt(11)) * 1;
+		  binaries[1] = Number(document.getElementById("binary").value.charAt(10)) * 2;
+		  binaries[2] = Number(document.getElementById("binary").value.charAt(9)) * 4;
+		  binaries[3] = Number(document.getElementById("binary").value.charAt(8)) * 8;
+		  binaries[4] = Number(document.getElementById("binary").value.charAt(7)) * 16;
+		  binaries[5] = Number(document.getElementById("binary").value.charAt(6)) * 32;
+		  binaries[6] = Number(document.getElementById("binary").value.charAt(5)) * 64;
+		  binaries[7] = Number(document.getElementById("binary").value.charAt(4)) * 128;
+		  binaries[8] = Number(document.getElementById("binary").value.charAt(3)) * 256;
+		  binaries[9] = Number(document.getElementById("binary").value.charAt(2)) * 512;
+		  binaries[10] = Number(document.getElementById("binary").value.charAt(1)) * 1024;
+		  binaries[11] = Number(document.getElementById("binary").value.charAt(0)) * 2048;
+		  let decimalResult = binaries[11] + binaries[10] + binaries[9] + binaries[8] + binaries[7] + binaries[6] + binaries[5] + binaries[4] + binaries[3] + binaries[2] 
+		  + binaries[1] + binaries[0];
 		  document.getElementById("decimal").value = decimalResult;
 		  }
     }
