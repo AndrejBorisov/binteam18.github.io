@@ -2,18 +2,25 @@
 <html>
 
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width">
-  <title>Binary Converter</title>
-  <link href="style.css" rel="stylesheet" type="text/css" />
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width">
+	<title>Binary Converter</title>
+	<link href="style.css" rel="stylesheet" type="text/css" 
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Anton&display=swap" rel="stylesheet">
   <style>
-  
-	#binaryDigits
-	{
-	font-size: 20px;
-	color: black;
+	.title{
+	font-family: "Anton", sans-serif;
+	font-weight: 400;
+	font-style: normal;
 	}
-	
+	.anton-regular {
+	font-family: "Anton", sans-serif;
+	font-weight: 400;
+	font-style: normal;
+	}
+	  
 	input::-webkit-outer-spin-button,
 	input::-webkit-inner-spin-button {
 	-webkit-appearance: none;
@@ -29,19 +36,20 @@
       <p>Enter binary number you wish to convert to decimal. Or decimal number to convert to binary. Only values of 0 and 1 allowed. Max Character lenght 12.</p>
     </div>
 	<br>
-	<p id="binaryDigits"></p>
     <div class="input-container">
       <label for="binary">Enter the value:</label>
-      <input type="number" dir="rtl" id="binary" maxlength="8" oninput="enteredValue(); maxInput();"
+      <input type="number" dir="rtl" id="binary" maxlength="8" oninput="maxInput();"
 	  onkeypress="return event.charCode === 48 || event.charCode === 49">
     </div>
     <br>
     <div class="input-container">
+	<p>Enter decimal value you want to convert. max value 99999</p>
       <label for="decimal">Decimal value:</label>
-      <input type="number" dir="rtl" id="decimal">
+      <input type="number" dir="rtl" id="decimal" min="1" max="99999" oninput="maxDecimal()">
     </div>
     <br>
-    <p> <button onclick="convertBinary()">Convert</button>
+    <p> <button onclick="convertBinary()">Convert Binary</button>
+	  <p> <button onclick="convertDecimal()">Convert Decimal</button>
       <button onclick="clearFields()">Clear</button>
     </p> <!-- add this line for clear fields button -->
     <p id="result" style="color: #c8ff00;"></p>
@@ -58,50 +66,13 @@
     <p style="color: #c8ff00; position: bottom left;">AB</p>
   </section>
   <script>
-		
-		function enteredValue() {
-		if (binary.value.length > 0){
-		document.getElementById("binaryDigits").textContent = document.getElementById("binary").value;
-		}
 
-		if (binary.value.length == 5)
-		{
-		document.getElementById("binaryDigits").textContent = document.getElementById("binary").value.charAt(0) + " " + document.getElementById("binary").value.charAt(1) +
-		document.getElementById("binary").value.charAt(2) + document.getElementById("binary").value.charAt(3) + document.getElementById("binary").value.charAt(4);
+	function maxInput() {
+		if (binary.value.length > 12) {
+		binary.value = binary.value.slice(0,12); 
+		alert("Max input is exceeded");
 		}
-		
-		if (binary.value.length == 6)
-		{
-		document.getElementById("binaryDigits").textContent = document.getElementById("binary").value.charAt(0) + document.getElementById("binary").value.charAt(1) + " " +
-		document.getElementById("binary").value.charAt(2) + document.getElementById("binary").value.charAt(3) + document.getElementById("binary").value.charAt(4) + 
-		document.getElementById("binary").value.charAt(5);
-		}
-		
-		if (binary.value.length == 7)
-		{
-		document.getElementById("binaryDigits").textContent = document.getElementById("binary").value.charAt(0) + document.getElementById("binary").value.charAt(1) +
-		document.getElementById("binary").value.charAt(2) + " "  + document.getElementById("binary").value.charAt(3) + document.getElementById("binary").value.charAt(4) +
-		document.getElementById("binary").value.charAt(5) + document.getElementById("binary").value.charAt(6);
-		}
-		
-		if (binary.value.length == 8)
-		{
-		document.getElementById("binaryDigits").textContent = document.getElementById("binary").value.charAt(0) + document.getElementById("binary").value.charAt(1) +
-		document.getElementById("binary").value.charAt(2) + document.getElementById("binary").value.charAt(3) + " "  + document.getElementById("binary").value.charAt(4) +
-		document.getElementById("binary").value.charAt(5) + document.getElementById("binary").value.charAt(6) + document.getElementById("binary").value.charAt(7);
-		}
-		
-		 if (binary.value.length == 0){
-		document.getElementById("binaryDigits").textContent = "";
-		}
-		}
-		 
-		function maxInput() {
-			if (binary.value.length > 12) {
-			binary.value = binary.value.slice(0,8); 
-			alert("Max input is exceeded");
-			}
-		} 
+	} 
 
     function convertBinary() {//binary to decimal value convertersion
 	  let binaries = [0,0,0,0,0,0,0,0,0,0,0,0]
@@ -252,6 +223,30 @@
 		  document.getElementById("decimal").value = decimalResult;
 		  }
     }
+	
+    function convertDecimal() {
+    let decimalValue = parseInt(document.getElementById("decimal").value);
+    let binaryResult = "";
+
+    // Convert decimal to binary
+    while (decimalValue > 0) {
+        let remainder = decimalValue % 2;
+        binaryResult = remainder + binaryResult;
+        decimalValue = Math.floor(decimalValue / 2);
+    }
+
+    document.getElementById("binary").value = binaryResult;
+
+    } 
+	
+	function maxDecimal() {
+		const inputElement = document.getElementById("decimal");
+		if (inputElement.value > 99999) {
+			alert("Exceeded the maximum value allowed!");
+			inputElement.value = 99999; // Revert the value back to 99,999
+		}
+	}
+   
 
     function clearFields() {
       document.getElementById("binary").value = "";
