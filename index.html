@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>Binary Converter</title>
+  <link href="style.css" rel="stylesheet" type="text/css" />
+  <style>
+  
+	#binaryDigits
+	{
+	font-size: 20px;
+	color: black;
+	}
+	
+	input::-webkit-outer-spin-button,
+	input::-webkit-inner-spin-button {
+	-webkit-appearance: none;
+	margin: 0;
+	}
+  </style>
+</head>
+
+<body bgcolor="white">
+  <main>
+    <h1 class="title">Binary Converter</h1>
+    <div class="description">
+      <p>Enter binary number you wish to convert to decimal. Or decimal number to convert to binary. Only values of 0 and 1 allowed. Max Character lenght 8.</p>
+    </div>
+	<br>
+	<p id="binaryDigits"></p>
+    <div class="input-container">
+      <label for="binary">Enter the value:</label>
+      <input type="number" dir="rtl" id="binary" maxlength="8" oninput="enteredValue(); maxInput();"
+	  onkeypress="return event.charCode === 48 || event.charCode === 49">
+    </div>
+    <br>
+    <div class="input-container">
+      <label for="decimal">Decimal value:</label>
+      <input type="number" dir="rtl" id="decimal">
+    </div>
+    <br>
+    <p> <button onclick="convertBinary()">Convert</button>
+      <button onclick="clearFields()">Clear</button>
+    </p> <!-- add this line for clear fields button -->
+    <p id="result" style="color: #c8ff00;"></p>
+  </main>
+  <section class="grid">
+    <a href="https://replit.com/learn" class='card'>
+      <h2>Learn &rarr;</h2>
+      <p>Find tutorials on Replit to learn more.</p>
+    </a>
+    <a href="https://docs.replit.com/category/deployments" class='card'>
+      <h2>Deploy &rarr;</h2>
+      <p>After you are happy with this app, deploy it on Replit!</p>
+    </a>
+    <p style="color: #c8ff00; position: bottom left;">AB</p>
+  </section>
+  <script>
+		
+		function enteredValue() {
+		if (binary.value.length > 0){
+		document.getElementById("binaryDigits").textContent = document.getElementById("binary").value;
+		}
+
+		if (binary.value.length == 5)
+		{
+		document.getElementById("binaryDigits").textContent = document.getElementById("binary").value.charAt(0) + " " + document.getElementById("binary").value.charAt(1) +
+		document.getElementById("binary").value.charAt(2) + document.getElementById("binary").value.charAt(3) + document.getElementById("binary").value.charAt(4);
+		}
+		
+		if (binary.value.length == 6)
+		{
+		document.getElementById("binaryDigits").textContent = document.getElementById("binary").value.charAt(0) + document.getElementById("binary").value.charAt(1) + " " +
+		document.getElementById("binary").value.charAt(2) + document.getElementById("binary").value.charAt(3) + document.getElementById("binary").value.charAt(4) + 
+		document.getElementById("binary").value.charAt(5);
+		}
+		
+		if (binary.value.length == 7)
+		{
+		document.getElementById("binaryDigits").textContent = document.getElementById("binary").value.charAt(0) + document.getElementById("binary").value.charAt(1) +
+		document.getElementById("binary").value.charAt(2) + " "  + document.getElementById("binary").value.charAt(3) + document.getElementById("binary").value.charAt(4) +
+		document.getElementById("binary").value.charAt(5) + document.getElementById("binary").value.charAt(6);
+		}
+		
+		if (binary.value.length == 8)
+		{
+		document.getElementById("binaryDigits").textContent = document.getElementById("binary").value.charAt(0) + document.getElementById("binary").value.charAt(1) +
+		document.getElementById("binary").value.charAt(2) + document.getElementById("binary").value.charAt(3) + " "  + document.getElementById("binary").value.charAt(4) +
+		document.getElementById("binary").value.charAt(5) + document.getElementById("binary").value.charAt(6) + document.getElementById("binary").value.charAt(7);
+		}
+		
+		 if (binary.value.length == 0){
+		document.getElementById("binaryDigits").textContent = "";
+		}
+		}
+		 
+		function maxInput() {
+			if (binary.value.length > 8) {
+			binary.value = binary.value.slice(0,8); 
+			alert("Max input is exceeded");
+			}
+		} 
+
+    function convertBinary() {//binary to decimal value convertersion
+	  let binaries = [0,0,0,0,0,0,0,0]
+	  var binaryInput = Number(document.getElementById("binary").value);
+	  	 if (binary.value.length == 1)
+		  {
+		  binaries[0] = Number(document.getElementById("binary").value.charAt(0)) * 1;
+		  let decimalResult = binaries[0];
+		  document.getElementById("decimal").value = decimalResult;
+		  }
+	  	 if (binary.value.length == 2)
+		  {
+		  binaries[0] = Number(document.getElementById("binary").value.charAt(1)) * 1;
+		  binaries[1] = Number(document.getElementById("binary").value.charAt(0)) * 2;
+		  let decimalResult = binaries[1] + binaries[0];
+		  document.getElementById("decimal").value = decimalResult;
+		  }
+	  	 if (binary.value.length == 3)
+		  {
+		  binaries[0] = Number(document.getElementById("binary").value.charAt(2)) * 1;
+		  binaries[1] = Number(document.getElementById("binary").value.charAt(1)) * 2;
+		  binaries[2] = Number(document.getElementById("binary").value.charAt(0)) * 4;
+		  let decimalResult = binaries[2] + binaries[1] + binaries[0];
+		  document.getElementById("decimal").value = decimalResult;
+		  }
+	  	 if (binary.value.length == 4)
+		  {
+		  binaries[0] = Number(document.getElementById("binary").value.charAt(3)) * 1;
+		  binaries[1] = Number(document.getElementById("binary").value.charAt(2)) * 2;
+		  binaries[2] = Number(document.getElementById("binary").value.charAt(1)) * 4;
+		  binaries[3] = Number(document.getElementById("binary").value.charAt(0)) * 8;
+		  let decimalResult = binaries[3] + binaries[2] + binaries[1] + binaries[0];
+		  document.getElementById("decimal").value = decimalResult;
+		  }
+		 if (binary.value.length == 5)
+		  {
+		  binaries[0] = Number(document.getElementById("binary").value.charAt(4)) * 1;
+		  binaries[1] = Number(document.getElementById("binary").value.charAt(3)) * 2;
+		  binaries[2] = Number(document.getElementById("binary").value.charAt(2)) * 4;
+		  binaries[3] = Number(document.getElementById("binary").value.charAt(1)) * 8;
+		  binaries[4] = Number(document.getElementById("binary").value.charAt(0)) * 16;
+		  let decimalResult = binaries[4] + binaries[3] + binaries[2] + binaries[1] + binaries[0];
+		  document.getElementById("decimal").value = decimalResult;
+		  }
+		 if (binary.value.length == 6)
+		  {
+		  binaries[0] = Number(document.getElementById("binary").value.charAt(5)) * 1;
+		  binaries[1] = Number(document.getElementById("binary").value.charAt(4)) * 2;
+		  binaries[2] = Number(document.getElementById("binary").value.charAt(3)) * 4;
+		  binaries[3] = Number(document.getElementById("binary").value.charAt(2)) * 8;
+		  binaries[4] = Number(document.getElementById("binary").value.charAt(1)) * 16;
+		  binaries[5] = Number(document.getElementById("binary").value.charAt(0)) * 32;
+		  let decimalResult = binaries[5] + binaries[4] + binaries[3] + binaries[2] + binaries[1] + binaries[0];
+		  document.getElementById("decimal").value = decimalResult;
+		  }
+		  
+		if (binary.value.length == 7)
+		  {
+		  binaries[0] = Number(document.getElementById("binary").value.charAt(6)) * 1;
+		  binaries[1] = Number(document.getElementById("binary").value.charAt(5)) * 2;
+		  binaries[2] = Number(document.getElementById("binary").value.charAt(4)) * 4;
+		  binaries[3] = Number(document.getElementById("binary").value.charAt(3)) * 8;
+		  binaries[4] = Number(document.getElementById("binary").value.charAt(2)) * 16;
+		  binaries[5] = Number(document.getElementById("binary").value.charAt(1)) * 32;
+		  binaries[6] = Number(document.getElementById("binary").value.charAt(0)) * 64;
+		  let decimalResult = binaries[6] + binaries[5] + binaries[4] + binaries[3] + binaries[2] + binaries[1] + binaries[0];
+		  document.getElementById("decimal").value = decimalResult;
+		  }
+
+		 if (binary.value.length == 8)
+		  {
+		  binaries[0] = Number(document.getElementById("binary").value.charAt(7)) * 1;
+		  binaries[1] = Number(document.getElementById("binary").value.charAt(6)) * 2;
+		  binaries[2] = Number(document.getElementById("binary").value.charAt(5)) * 4;
+		  binaries[3] = Number(document.getElementById("binary").value.charAt(4)) * 8;
+		  binaries[4] = Number(document.getElementById("binary").value.charAt(3)) * 16;
+		  binaries[5] = Number(document.getElementById("binary").value.charAt(2)) * 32;
+		  binaries[6] = Number(document.getElementById("binary").value.charAt(1)) * 64;
+		  binaries[7] = Number(document.getElementById("binary").value.charAt(0)) * 128;
+		  let decimalResult = binaries[7] + binaries[6] + binaries[5] + binaries[4] + binaries[3] + binaries[2] + binaries[1] + binaries[0];
+		  document.getElementById("decimal").value = decimalResult;
+		  }
+    }
+
+    function clearFields() {
+      document.getElementById("binary").value = "";
+      document.getElementById("decimal").value = "";
+      document.getElementById("binaryDigits").textContent = "";
+    } // add this function for clear fields button
+  </script>
+
+  <!--
+    This script places a badge on your repl's full-browser view back to your repl's cover
+    page. Try various colors for the theme: dark, light, red, orange, yellow, lime, green,
+    teal, blue, blurple, magenta, pink!
+  -->
+ 
+</body>
+
+</html>
